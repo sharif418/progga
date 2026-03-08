@@ -6,7 +6,7 @@ import axios from 'axios';
 import { toast } from 'sonner';
 import { BarChart as RechartsBarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8122';
+const API_URL = import.meta.env.VITE_API_URL || '';
 
 type Step = 'upload' | 'configure' | 'results';
 
