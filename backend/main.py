@@ -423,12 +423,26 @@ async def cluster_analysis(
 # Serve frontend static files in production
 static_dir = os.path.join(os.path.dirname(__file__), "static")
 if os.path.exists(static_dir):
-    app.mount("/assets", StaticFiles(directory=os.path.join(static_dir, "assets")), name="assets")
+    # Mount /assets explicitly
+    assets_dir = os.path.join(static_dir, "assets")
+    if os.path.exists(assets_dir):
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
 
     @app.get("/{full_path:path}")
     async def serve_spa(full_path: str):
         """Serve the React SPA for all non-API routes"""
+        import mimetypes
+        
+        # If no path, serve index.html
+        if not full_path:
+            return FileResponse(os.path.join(static_dir, "index.html"))
+        
+        # Check if the requested file exists in static dir
         file_path = os.path.join(static_dir, full_path)
         if os.path.exists(file_path) and os.path.isfile(file_path):
-            return FileResponse(file_path)
+            # Detect content type for proper headers
+            content_type, _ = mimetypes.guess_type(file_path)
+            return FileResponse(file_path, media_type=content_type)
+        
+        # Fallback to index.html for SPA routing
         return FileResponse(os.path.join(static_dir, "index.html"))
