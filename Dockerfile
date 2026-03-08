@@ -20,8 +20,8 @@ COPY backend/ ./
 # Copy built frontend from Stage 1
 COPY --from=frontend-build /app/frontend/dist ./static
 
-# Expose port
-EXPOSE 8000
+# Expose port (Coolify default)
+EXPOSE 3000
 
 # Run uvicorn
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3000"]
