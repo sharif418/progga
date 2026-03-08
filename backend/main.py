@@ -36,7 +36,7 @@ def read_data(file: UploadFile) -> pd.DataFrame:
         raise HTTPException(status_code=400, detail=f"ফাইল পড়ার সময় ত্রুটি: {str(e)}")
 
 
-@app.get("/")
+@app.get("/api/health")
 def read_root():
     return {"status": "ok", "message": "Backend engine is running"}
 
