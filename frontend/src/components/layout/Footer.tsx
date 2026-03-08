@@ -1,5 +1,5 @@
 import React from 'react';
-import { Activity, Github, Heart } from 'lucide-react';
+import { Github, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
@@ -9,11 +9,9 @@ export default function Footer() {
                 <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
                     {/* Brand */}
                     <Link to="/" className="flex items-center gap-2 group">
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-blue-700 flex items-center justify-center text-white transition-transform group-hover:scale-105">
-                            <Activity className="w-4 h-4" />
-                        </div>
+                        <img src="/logo.png" alt="পিউ" className="w-8 h-8 rounded-full object-cover border-2 border-primary/20 transition-transform group-hover:scale-105" />
                         <span className="font-bold text-sm bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-700">
-                            প্রজ্ঞা পারমাণবিক
+                            প্রজ্ঞা পারমাণবিক পিউ
                         </span>
                     </Link>
 
